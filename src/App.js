@@ -12,6 +12,7 @@ const App = () => {
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState('')
 
+  // Reterive all notes initially
   useEffect(() => {
     noteService
       .getAll()
@@ -20,6 +21,8 @@ const App = () => {
       })
   }, [])
 
+  // Determine whether to show all notes or only important ones by looking at value 
+  // of showAll variable (true or false)
   const notesToShow = showAll
     ? notes
     : notes.filter(note => note.important)
@@ -44,6 +47,7 @@ const App = () => {
       })
   }
 
+  // Handle adding note (when save button is pressed)
   const addNote = event => {
     event.preventDefault()
     const noteToBeAdded = {
@@ -67,10 +71,12 @@ const App = () => {
       })
   }
 
+  // Handle change when the field for adding a new note changes
   const handleNoteChange = event => {
     setNewNote(event.target.value)
   }
 
+  // Toggle between showing all notes or showing only the important ones
   const toggleShowAll = () => {
     setShowAll(!showAll)
   }
