@@ -120,6 +120,13 @@ const App = () => {
     </form>
   )
 
+  // Generate form to add new note
+  const noteForm = () => (
+    <form onSubmit={addNote}>
+      <input value={newNote} onChange={handleNoteChange}/>
+      <button type="submit">save</button>
+    </form>
+  )
 
       <ShowAllButton toggleShowAll={toggleShowAll} showAll={showAll} />
       {notes && (
