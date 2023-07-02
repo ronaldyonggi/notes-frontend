@@ -128,6 +128,19 @@ const App = () => {
     </form>
   )
 
+  return (
+    <div>
+      <h1>Notes</h1>
+      <Notification message={errorMessage} />
+
+      {/* If user is null (no user is logged in), display login form. Otherwise display add new note form */}
+      {!user && loginForm()}
+      {user && <div>
+        <p>{user.name} logged in</p>
+        {noteForm()}
+        </div>
+        }
+
       <ShowAllButton toggleShowAll={toggleShowAll} showAll={showAll} />
       {notes && (
         <ul>
