@@ -21,9 +21,19 @@ const getAll = () => {
   return request.then(response => response.data)
 }
 
-const create = newObject => {
-  const request = axios.post(baseUrl, newObject)
-  return request.then(response => response.data)
+// Create a new note
+const create = async newObject => {
+  // const request = axios.post(baseUrl, newObject)
+  // return request.then(response => response.data)
+
+  // Sets token to the authorization header
+  const config = {
+    headers: { Authorization: token },
+  }
+
+  // Header is given to axios as the 3rd parameter of post method
+  const response = await axios.post(baseUrl, newObject, config)
+  return response.data
 }
 
 // Update a note
