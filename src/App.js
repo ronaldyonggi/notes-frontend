@@ -95,6 +95,12 @@ const App = () => {
         username, password
       })
 
+      // if user login is successful, save user info to browser local storage
+      window.localStorage.setItem(
+        // Values saved to storage are DOMstrings, not JS. The 'user' JS object need to be converted to JSON
+        'loggedNoteappUser', JSON.stringify(user)
+      )
+
       // if user login is successful, set token
       noteService.setToken(user.token)
 
