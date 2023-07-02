@@ -154,7 +154,7 @@ const App = () => {
         </ul>
       )}
 
-      <Form addNote={addNote} newNote={newNote} handleNoteChange={handleNoteChange}/>
+      {/* <Form addNote={addNote} newNote={newNote} handleNoteChange={handleNoteChange}/> */}
       <Footer />
     </div>
   )
