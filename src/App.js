@@ -4,7 +4,7 @@ import noteService from './services/notes'
 import loginService from './services/login'
 import Notification from "./components/Notification";
 import ShowAllButton from "./components/ShowAllButton";
-import Form from "./components/Form";
+// import Form from "./components/Form";
 import Footer from "./components/Footer";
 
 const App = () => {
