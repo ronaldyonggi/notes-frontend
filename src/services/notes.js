@@ -42,6 +42,7 @@ const update = (id, newObject) => {
   return request.then(response => response.data)
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { 
-  getAll, create, update 
+  getAll, create, update , setToken
 }
