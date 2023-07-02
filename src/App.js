@@ -94,6 +94,10 @@ const App = () => {
       const user = await loginService.login({
         username, password
       })
+
+      // if user login is successful, set token
+      noteService.setToken(user.token)
+
       setUser(user)
       setUsername('')
       setPassword('')
