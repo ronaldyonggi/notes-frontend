@@ -1,6 +1,13 @@
 import axios from "axios";
 const baseUrl = '/api/notes'
 
+// Initialize token
+let token = null
+
+// Function to set token
+const setToken = newToken => {
+  token = `Bearer ${newToken}`
+}
 const getAll = () => {
   const request = axios.get(baseUrl)
   // const nonExistingNote = {
