@@ -16,7 +16,7 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
-  // Reterive all notes initially
+  // Retrieve all notes initially
   useEffect(() => {
     noteService
       .getAll()
