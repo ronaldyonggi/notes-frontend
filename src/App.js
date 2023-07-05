@@ -25,6 +25,17 @@ const App = () => {
       })
   }, [])
 
+  // Retrieve currently logged in user from local browser storage, if a user was logged in in the first place
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+    // If the retrieved user is not null, then a user is currently logged in
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      noteService.setToken(user.token)
+    }
+  }, [])
+
   // Determine whether to show all notes or only important ones by looking at value 
   // of showAll variable (true or false)
   const notesToShow = showAll
