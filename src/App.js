@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm'
 import Footer from "./components/Footer";
 
 const App = () => {
+  const [loginVisible, setLoginVisible] = useState(false)
   const [notes, setNotes] = useState(null)
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
@@ -136,20 +137,46 @@ const App = () => {
     noteService.setToken(null)
   }
 
+  // const loginForm = () => (
+  //   <form onSubmit={handleLogin}>
+  //     <div>
+  //       username
+  //       <input type="text" value={username} name="Username" onChange={({ target }) => setUsername(target.value)} />
+  //     </div>
+  //     <div>
+  //       password
+  //       <input type="password" value={password} name="Password" onChange={({ target }) => setPassword(target.value)} />
+  //     </div>
+  //     <button type="submit">login</button>
+  //   </form>
+  // )
+
   // Generate login forms
-  const loginForm = () => (
-    <form onSubmit={handleLogin}>
+  const loginForm = () => {
+    // const hideWhenVisible = { display: loginVisible ? 'none' : ''}
+    // const showWhenVisible = { display: loginVisible ? '' : 'none'}
+
+    return (
       <div>
-        username
-        <input type="text" value={username} name="Username" onChange={({ target }) => setUsername(target.value)} />
+        {/* <div style={hideWhenVisible}> */}
+        {!loginVisible && 
+          <button onClick={() => setLoginVisible(true)}>log in</button>
+        }
+        {loginVisible && 
+          <LoginForm 
+            username={username}
+            password={password}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            handleSubmit={handleLogin}
+          />
+        }
+        {loginVisible && 
+          <button onClick={() => setLoginVisible(false)}>cancel</button>
+        }
       </div>
-      <div>
-        password
-        <input type="password" value={password} name="Password" onChange={({ target }) => setPassword(target.value)} />
-      </div>
-      <button type="submit">login</button>
-    </form>
-  )
+    )
+  }
 
   // Generate form to add new note
   const noteForm = () => (
