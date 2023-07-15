@@ -126,6 +126,16 @@ const App = () => {
     }
   }
 
+  // Handle logout when logout button is pressed
+  const handleLogout = () => {
+    // Remove user from local storage
+    window.localStorage.removeItem('loggedNoteappUser')
+    // Set user to null
+    setUser(null)
+    // Set token to null
+    noteService.setToken(null)
+  }
+
   // Generate login forms
   const loginForm = () => (
     <form onSubmit={handleLogin}>
@@ -157,7 +167,10 @@ const App = () => {
       {/* If user is null (no user is logged in), display login form. Otherwise display add new note form */}
       {!user && loginForm()}
       {user && <div>
-        <p>{user.name} logged in</p>
+        <p>
+          {user.name} logged in
+          <button onClick={handleLogout}>logout</button>
+        </p>
         {noteForm()}
         </div>
         }
