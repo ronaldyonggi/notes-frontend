@@ -13,8 +13,6 @@ const App = () => {
   const [notes, setNotes] = useState(null)
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
   // Retrieve all notes initially
@@ -87,8 +85,8 @@ const App = () => {
   }
 
   // Handle login when login button is pressed
-  const handleLogin = async event => {
-    event.preventDefault()
+  // username and password is provided from LoginForm
+  const handleLogin = async (username, password) => {
     // console.log('logging in with', username, password)
 
     try {
@@ -106,8 +104,6 @@ const App = () => {
       noteService.setToken(user.token)
 
       setUser(user)
-      setUsername('')
-      setPassword('')
     } catch (exception) {
       setErrorMessage('Wrong credentials')
       setTimeout(() => {
@@ -134,13 +130,7 @@ const App = () => {
       {/* If user is null (no user is logged in), display login form. Otherwise display add new note form */}
       {!user && 
         <Togglable buttonLabel="log in">
-          <LoginForm
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
-          />
+          <LoginForm login={handleLogin}/>
         </Togglable>
       }
 
