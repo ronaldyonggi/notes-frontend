@@ -11,7 +11,6 @@ import Togglable from "./components/Togglable";
 
 const App = () => {
   const [notes, setNotes] = useState(null)
-  const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState('')
   const [username, setUsername] = useState('')
@@ -65,19 +64,13 @@ const App = () => {
   }
 
   // Handle adding note (when save button is pressed)
-  const addNote = event => {
-    event.preventDefault()
-    const noteToBeAdded = {
-      content: newNote,
-      important: Math.random() < 0.5,
-      // id: notes.length + 1
-    }
-
+  // This function will be passed to NoteForm component as createNote props. 
+  // The noteObject argument will be provided in NoteForm
+  const addNote = noteObject => {
     noteService
-      .create(noteToBeAdded)
+      .create(noteObject)
       .then(addedNoteResponse => {
         setNotes(notes.concat(addedNoteResponse))
-        setNewNote('')
       })
       .catch(error => {
         console.log(error.name)
@@ -86,11 +79,6 @@ const App = () => {
           setErrorMessage(null)
         }, 5000)
       })
-  }
-
-  // Handle change when the field for adding a new note changes
-  const handleNoteChange = event => {
-    setNewNote(event.target.value)
   }
 
   // Toggle between showing all notes or showing only the important ones
@@ -163,7 +151,8 @@ const App = () => {
             <button onClick={handleLogout}>logout</button>
           </p>
           <Togglable buttonLabel="new note">
-            <NoteForm onSubmit={addNote} value={newNote} handleChange={handleNoteChange}/>
+            {/* <NoteForm onSubmit={addNote} value={newNote} handleChange={handleNoteChange}/> */}
+            <NoteForm createNote={addNote}/>
           </Togglable>
         </div>
         }
