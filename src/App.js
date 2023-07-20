@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Note from "./components/Note";
 import noteService from './services/notes'
 import loginService from './services/login'
@@ -14,6 +14,7 @@ const App = () => {
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState('')
   const [user, setUser] = useState(null)
+  const noteFormRef = useRef()
 
   // Retrieve all notes initially
   useEffect(() => {
@@ -65,6 +66,7 @@ const App = () => {
   // This function will be passed to NoteForm component as createNote props. 
   // The noteObject argument will be provided in NoteForm
   const addNote = noteObject => {
+    noteFormRef.current.toggleVisibility()
     noteService
       .create(noteObject)
       .then(addedNoteResponse => {
@@ -140,7 +142,7 @@ const App = () => {
             {user.name} logged in
             <button onClick={handleLogout}>logout</button>
           </p>
-          <Togglable buttonLabel="new note">
+          <Togglable buttonLabel="new note" ref={noteFormRef}>
             {/* <NoteForm onSubmit={addNote} value={newNote} handleChange={handleNoteChange}/> */}
             <NoteForm createNote={addNote}/>
           </Togglable>
