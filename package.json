@@ -18,6 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "eslint": "eslint --fix .",
     "server": "json-server -p3001 --watch db.json"
   },
   "proxy": "http://localhost:3001",
@@ -40,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-plugin-jest": "^27.2.3",
     "json-server": "^0.17.3"
   }
 }
