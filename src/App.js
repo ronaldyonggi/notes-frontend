@@ -1,13 +1,13 @@
-import { useEffect, useState, useRef } from "react";
-import Note from "./components/Note";
+import { useEffect, useState, useRef } from 'react'
+import Note from './components/Note'
 import noteService from './services/notes'
 import loginService from './services/login'
-import Notification from "./components/Notification";
-import ShowAllButton from "./components/ShowAllButton";
+import Notification from './components/Notification'
+import ShowAllButton from './components/ShowAllButton'
 import LoginForm from './components/LoginForm'
-import Footer from "./components/Footer";
+import Footer from './components/Footer'
 import NoteForm from './components/NoteForm'
-import Togglable from "./components/Togglable";
+import Togglable from './components/Togglable'
 
 const App = () => {
   const [notes, setNotes] = useState(null)
@@ -36,7 +36,7 @@ const App = () => {
     }
   }, [])
 
-  // Determine whether to show all notes or only important ones by looking at value 
+  // Determine whether to show all notes or only important ones by looking at value
   // of showAll variable (true or false)
   const notesToShow = showAll
     ? notes
@@ -45,7 +45,7 @@ const App = () => {
   const toggleImportance = id => {
     // Find the note that matches the id
     const matchingNote = notes.find(note => note.id === id)
-    const modifiedNote = {...matchingNote, important: !matchingNote.important}
+    const modifiedNote = { ...matchingNote, important: !matchingNote.important }
 
     noteService
       .update(id, modifiedNote)
@@ -63,7 +63,7 @@ const App = () => {
   }
 
   // Handle adding note (when save button is pressed)
-  // This function will be passed to NoteForm component as createNote props. 
+  // This function will be passed to NoteForm component as createNote props.
   // The noteObject argument will be provided in NoteForm
   const addNote = noteObject => {
     noteFormRef.current.toggleVisibility()
@@ -130,13 +130,13 @@ const App = () => {
       <Notification message={errorMessage} />
 
       {/* If user is null (no user is logged in), display login form. Otherwise display add new note form */}
-      {!user && 
+      {!user &&
         <Togglable buttonLabel="log in">
           <LoginForm login={handleLogin}/>
         </Togglable>
       }
 
-      {user && 
+      {user &&
         <div>
           <p>
             {user.name} logged in
@@ -147,18 +147,18 @@ const App = () => {
             <NoteForm createNote={addNote}/>
           </Togglable>
         </div>
-        }
+      }
 
       <ShowAllButton toggleShowAll={toggleShowAll} showAll={showAll} />
       {notes && (
         <ul>
-          {notesToShow.map(note => 
-            <Note 
-            key={note.id} 
-            note={note}
-            toggleImportance={() => toggleImportance(note.id)}
+          {notesToShow.map(note =>
+            <Note
+              key={note.id}
+              note={note}
+              toggleImportance={() => toggleImportance(note.id)}
             />
-            )}
+          )}
         </ul>
       )}
 
@@ -168,4 +168,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App

@@ -1,4 +1,4 @@
-const ShowAllButton = ({toggleShowAll, showAll}) => {
+const ShowAllButton = ({ toggleShowAll, showAll }) => {
   return (
     <>
       <button onClick={toggleShowAll}>
