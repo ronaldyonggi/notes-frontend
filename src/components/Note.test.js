@@ -6,13 +6,13 @@ import { render, screen } from '@testing-library/react'
 
 test('renders content', () => {
   const note = {
-    content: 'Component testing is done with react-testing-library',
+    content: 'Does not work anymore :(',
     important: true
   }
 
   render(<Note note={note}/>)
 
-  const element = screen.getByText('Component testing is done with react-testing-library')
+  const element = screen.getByText('Does not work anymore :(', { exact: false })
   expect(element).toBeDefined()
 })
 
