@@ -13,7 +13,8 @@ describe('Note app', function() {
     // Create the user 'mluukkai' every time the test suite starts
     cy.request('POST', `${Cypress.env('BACKEND')}/users`, user)
 
-    cy.visit('http://localhost:3000')
+    // cy.visit('http://localhost:3000')
+    cy.visit('')
   })
 
   it('front page can be opened', function() {
