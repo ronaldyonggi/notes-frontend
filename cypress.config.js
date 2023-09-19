@@ -7,4 +7,7 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
   },
+  env: {
+    BACKEND: 'http://localhost:3001/api'
+  }
 });
