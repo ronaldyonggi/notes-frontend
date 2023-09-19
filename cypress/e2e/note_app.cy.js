@@ -1,7 +1,8 @@
 describe('Note app', function() {
   beforeEach(function() {
     // Reset notes and users every time the test suite starts
-    cy.request('POST', 'http://localhost:3001/api/testing/reset')
+    // cy.request('POST', 'http://localhost:3001/api/testing/reset')
+    cy.request('POST', `${Cypress.env('BACKEND')}/testing/reset`)
 
     const user = {
       name: 'Matti Luukkainen',
@@ -10,7 +11,7 @@ describe('Note app', function() {
     }
 
     // Create the user 'mluukkai' every time the test suite starts
-    cy.request('POST', 'http://localhost:3001/api/users', user)
+    cy.request('POST', `${Cypress.env('BACKEND')}/users`, user)
 
     cy.visit('http://localhost:3000')
   })
