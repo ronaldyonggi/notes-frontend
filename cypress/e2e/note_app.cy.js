@@ -93,9 +93,14 @@ describe('Note app', function() {
 
     describe('and a note exists', function () {
       beforeEach(function () {
-        cy.contains('new note').click()
-        cy.get('input').type('another note cypress')
-        cy.contains('save').click()
+        // cy.contains('new note').click()
+        // cy.get('input').type('another note cypress')
+        // cy.contains('save').click()
+
+        cy.createNote({
+          content: 'another note cypress',
+          important: true
+        })
       })
 
       it('it can be made not important', function () {
