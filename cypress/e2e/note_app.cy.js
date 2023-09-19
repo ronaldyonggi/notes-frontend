@@ -1,5 +1,6 @@
 describe('Note app', function() {
   beforeEach(function() {
+    // Reset notes and users every time the test suite starts
     cy.request('POST', 'http://localhost:3001/api/testing/reset')
 
     const user = {
