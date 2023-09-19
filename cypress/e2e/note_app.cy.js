@@ -9,6 +9,7 @@ describe('Note app', function() {
       password: 'salainen'
     }
 
+    // Create the user 'mluukkai' every time the test suite starts
     cy.request('POST', 'http://localhost:3001/api/users', user)
 
     cy.visit('http://localhost:3000')
