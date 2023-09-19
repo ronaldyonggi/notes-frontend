@@ -38,10 +38,25 @@ describe('Note app', function() {
 
   describe('when logged in', function() {
     beforeEach(function() {
-      cy.contains('log in').click()
-      cy.get('input:first').type('mluukkai')
-      cy.get('input:last').type('salainen')
-      cy.get('#login-button').click()
+      // cy.contains('log in').click()
+      // cy.get('input:first').type('mluukkai')
+      // cy.get('input:last').type('salainen')
+      // cy.get('#login-button').click()
+
+      // cy.request('POST', 'http://localhost:3001/api/login', {
+      //   username: 'mluukkai',
+      //   password: 'salainen'
+      // })
+      //   .then(response => {
+      //     localStorage.setItem('loggedNoteappUser', JSON.stringify(response.body))
+      //     cy.visit('http://localhost:3000')
+      //   })
+
+      cy.login({
+        username: 'mluukkai',
+        password: 'salainen'
+      })
+
     })
 
     it('a new note can be created', function() {
