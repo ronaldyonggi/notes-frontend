@@ -13,7 +13,8 @@ const NoteForm = ({ createNote }) => {
     // createNote is passed as props
     createNote({
       content: newNote,
-      important: Math.random() > 0.5
+      // important: Math.random() > 0.5
+      important: true
     })
 
     setNewNote('')
