@@ -91,6 +91,29 @@ describe('Note app', function() {
         cy.createNote({ content: 'third note', important: false })
       })
 
+      it.only('one of those can be made important', function () {
+        // cy.contains('second note')
+        //   .contains('make important')
+        //   .click()
+
+        // cy.contains('second note')
+        //   .contains('make not important')
+
+        // cy.contains('second note')
+        //   .parent()
+        //   .find('button')
+        //   .click()
+
+        // cy.contains('second note')
+        //   .parent()
+        //   .find('button')
+        //   .should('contain', 'make not important')
+        cy.contains('second note').parent().find('button').as('theButton')
+        cy.get('@theButton').click()
+        cy.get('@theButton').should('contain', 'make not important')
+      })
+    })
+
     it('a new note can be created', function() {
       cy.contains('new note').click()
       cy.get('input').type('a note created by cypress')
