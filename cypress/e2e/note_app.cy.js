@@ -84,6 +84,13 @@ describe('Note app', function() {
 
     })
 
+    describe('and several notes exist', function () {
+      beforeEach(function () {
+        cy.createNote({ content: 'first note', important: false })
+        cy.createNote({ content: 'second note', important: false })
+        cy.createNote({ content: 'third note', important: false })
+      })
+
     it('a new note can be created', function() {
       cy.contains('new note').click()
       cy.get('input').type('a note created by cypress')
